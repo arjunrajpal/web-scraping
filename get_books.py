@@ -182,42 +182,6 @@ def getFromBookDepository(bookdepositoryUrl):
 
         books = soup.find_all('div',attrs={'class' : 'book-item'})
 
-        # bookdepositoryBooks = []
-
-        # for book in books:
-
-            # bookDetails = {}
-
-            # link = "https://www.bookdepository.com"+book.a['href']
-            # img = book.img['data-lazy']
-            #
-            # temp = book.find('h3',{'class':'title'})
-            # bookTitle = temp.text.strip(' \t\n\r')
-            #
-            # temp = book.find('p',{'class':'author'})
-            # author = temp.text.strip(' \t\n\r')
-            #
-            # temp = book.find('p',{'class':'published'})
-            # date = temp.text.strip(' \t\n\r')
-
-            # temp = book.find('p', {'class': 'price'})
-            # price = temp.text.strip(' \t\n\r')
-            #
-            # temp = book.find('span', {'class': 'rrp'})
-            # if temp:
-            #     originalprice = temp.text.strip(' \t\n\r')
-            #     price = price.replace(originalprice,"")
-
-            # print link,img,bookTitle,author,date,price
-
-            # bookDetails = {"Link": link, "img": img, "Title": bookTitle, "Author": author, "Price": price, "Date": date}
-
-            # bookdepositoryBooks.append(bookDetails)
-
-        # print bookdepositoryBooks
-
-        # return bookdepositoryBooks
-
         if len(books)>0:
             link = "https://www.bookdepository.com"+books[0].a['href']
 
@@ -248,51 +212,6 @@ def getFromGoodReads(goodreadsUrl):
 
     soup = BeautifulSoup(scrapedFromGoodReads, 'html.parser')
     trs = soup.find_all('tr')
-
-    # goodreadsBooks = []
-    #
-    # for tr in trs:
-    #
-    #     bookDetails = {}
-    #
-    #     link = "http://www.goodreads.com"+tr.a['href']
-    #
-    #     temp = tr.find('a',attrs={'class':'bookTitle'})
-    #     bookTitle = temp.text.strip(' \t\n\r')
-    #
-    #     temp = tr.find('a', attrs={'class': 'authorName'})
-    #     author = temp.text
-    #
-    #     bookFile = urllib2.urlopen(link)
-    #     scrapedFromBookFile = bookFile.read()
-    #     bookFile.close()
-    #
-    #     soupForBook = BeautifulSoup(scrapedFromBookFile, 'html.parser')
-    #     temp = soupForBook.find('div',attrs={'id':'description'})
-    #     temp = temp.find_all('span')
-    #     if len(temp)>=2:
-    #         summary = temp[1].text
-    #     else:
-    #         summary = temp[0].text
-    #
-    #     temp = soupForBook.find('span', attrs={'class': 'value rating'})
-    #     stars = temp.text
-    #
-    #     temp = soupForBook.find_all('a', attrs={'href': '#other_reviews'})
-    #     ratings = temp[0].text.replace('Ratings','').strip(' \t\n\r')
-    #
-    #     reviews = temp[1].text.replace('Reviews\n','').strip(' \t\n\r')
-    #     # print link," ",bookTitle," ",author," ",stars," ",ratings," ",reviews," ",summary
-    #
-    #     bookDetails = {"Link":link, "Title":bookTitle, "Author":author, "Stars":stars, "Ratings":ratings, "Reviews":reviews, "Summary":summary}
-    #
-    #     # print bookDetails
-    #
-    #     goodreadsBooks.append(bookDetails)
-    #
-    # print goodreadsBooks
-    #
-    # return goodreadsBooks
 
     if len(trs) > 0:
 
@@ -342,60 +261,6 @@ def getPrices(book):
     amazonBooks = getFromAmazon(amazonUrl)
 
     return amazonBooks
-    # bookdepositoryUrl = "https://www.bookdepository.com/search?searchTerm="+book
-    #
-    # bookdepositoryBooks = getFromBookDepository(bookdepositoryUrl,headers)
-
-    # goodreadsUrl = "https://www.goodreads.com/search?q="+book
-    #
-    # goodreadsBooks = getFromGoodReads(goodreadsUrl,headers)
-
-    # print amazonBooks
-
-    # printTable(amazonBooks)
-
-    amazonBooks = json.dumps(amazonBooks)
-
-    # print amazonBooks
-
-    # print bookdepositoryBooks
-    #
-    # print goodreadsBooks
-    #
-    # allBooks = []
-    # for book1 in amazonBooks:
-    #     for book2 in bookdepositoryBooks:
-    #         for book3 in goodreadsBooks:
-    #
-    #             bookDetails = {flag: 0}
-    #
-    #             if book1['Title'] == book2['Title'] and book1['Title'] == book3['Title'] and book1['Author'] == book2['Author'] and book1['Author'] == book3['Author']:
-    #                 bookDetails = {"Amazon Link": book1['Link'], "Book Depository Link:": book2['Link'], "Title": book1['Title'], "Author": book1['Author'], "Stars": book3['Stars'],
-    #                                "Ratings": book3['Ratings'], "Reviews": book3['Reviews'], "Summary": book3['Summary'], "Amazon": book1['Price'], "Book Depository": book2['Price']}
-    #                 # print bookDetails
-    #
-    #             elif book1['Title'] == book3['Title'] and book1['Author'] == book3['Author']:
-    #                     bookDetails = {"Amazon Link": book1['Link'], "Title": book1['Title'], "Author": book1['Author'],
-    #                                    "Stars": book3['Stars'],
-    #                                    "Ratings": book3['Ratings'], "Reviews": book3['Reviews'],
-    #                                    "Summary": book3['Summary'], "Amazon": book1['Price']}
-    #
-    #             elif book2['Title'] == book3['Title'] and book2['Author'] == book3['Author']:
-    #                     bookDetails = {"Book Depository Link": book2['Link'], "Title": book2['Title'], "Author": book2['Author'],
-    #                                    "Stars": book3['Stars'],
-    #                                    "Ratings": book3['Ratings'], "Reviews": book3['Reviews'],
-    #                                    "Summary": book3['Summary'], "Book Depository": book2['Price']}
-    #
-    #             if bookDetails != {}:
-    #                 allBooks.append(bookDetails)
-    #                 break
-    #                 # print bookDetails
-    #
-    # print allBooks
-    #
-    # printTable(allBooks)
-    #
-    # return allBooks
 
 
 # Gets the required keyword from the user on the basis of which the book has to be searched
