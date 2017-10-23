@@ -11,8 +11,8 @@ def getData():
     br.addheaders = [('User-agent', 'Firefox')]
     br.open(absoluteUrl)
     br.select_form(nr=0)
-    br.form['intern_student_username_rollnumber'] = "2k14/se/021"
-    br.form['intern_student_password'] = "Tintinrajpal@11"
+    br.form['intern_student_username_rollnumber'] = "your roll no"
+    br.form['intern_student_password'] = "your password"
 
     response = br.submit()
 
