@@ -14,22 +14,21 @@ def getNews(topic):
     soup = BeautifulSoup(news,'html.parser')
 
     # headlines = soup.find_all('span',attrs={'class':'titletext'})
-    articleLink = soup.find_all('h2',attrs={'class':'esc-lead-article-title'})
+    articleLink = soup.find_all('c-wiz',attrs={'class':'M1Uqc kWyHVd'})
 
     # print len(headlines)
-    # print len(articleLink)
+    print len(articleLink)
 
     newsArticles = prettytable.PrettyTable(['SNo','Headlines','News Link'])
 
     for index in range(len(articleLink)):
 
-        newsHeadlines = articleLink[index].find('span',attrs={'class':'titletext'}).text
-        newsLink = articleLink[index].a['href']
+        newsHeadlines = articleLink[index].find('a',attrs={'class':'nuEeue hzdq5d ME7ew'}).text
+        newsLink = articleLink[index].find('a',attrs={'class':'nuEeue hzdq5d ME7ew'})['href']
 
-        # print "Article", index+1, ": ", headlines[index].text
+        print "Article", index+1, ": ", newsHeadlines
 
-        # print "Article", index+1, ": ", newsHeadlines
-        # print newsLink
+        print "Article", index+1, ": ", newsLink
 
         article = [index+1, newsHeadlines, newsLink]
         newsArticles.add_row(article)

@@ -46,7 +46,7 @@ def getTop100():
         current_week = song.find('span',attrs={'class':'chart-row__current-week'}).text.strip(' \t\n\r')
         last_week = song.find('span',attrs={'class':'chart-row__last-week'}).text.strip(' \t\n\r').replace("Last Week: ","")
         title = song.find('h2', attrs={'class': 'chart-row__song'}).text.strip(' \t\n\r.')
-        artist = song.find('h3', attrs={'class': 'chart-row__artist'})
+        artist = song.find('span', attrs={'class': 'chart-row__artist'})
         if not artist:
             artist = song.find('a', attrs={'class': 'chart-row__artist'}).text.strip(' \t\n\r')
         else:

@@ -3,7 +3,7 @@ import mechanize
 from prettytable import PrettyTable
 import csv
 
-def getData():
+def getData(rollno, password):
     absoluteUrl = "http://tnp.dtu.ac.in/rm_2016-17/login/"
 
     br = mechanize.Browser()
@@ -11,8 +11,8 @@ def getData():
     br.addheaders = [('User-agent', 'Firefox')]
     br.open(absoluteUrl)
     br.select_form(nr=0)
-    br.form['student_username_rollnumber'] = "your roll no"
-    br.form['student_password'] = "your password"
+    br.form['student_username_rollnumber'] = rollno
+    br.form['student_password'] = password
 
     response = br.submit()
 
@@ -161,4 +161,6 @@ def getData():
 
 if __name__ == "__main__":
 
-    getData()
+    rollno = raw_input("Enter roll no:")
+    password = raw_input("Enter password:")
+    getData(rollno,password)
