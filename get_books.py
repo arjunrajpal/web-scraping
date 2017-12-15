@@ -54,12 +54,12 @@ def printTable(allBooks):
         else:
             summary = ''
 
-        b = [index+1, book['Title'], book['Author'], amazonPrice, bookDepositoryPrice, reviews, ratings, stars, summary, amazonLink, bookDepositoryLink]
+        b = [index+1, book['Title'].strip(' \t\n\r'), book['Author'].strip(' \t\n\r'), amazonPrice.strip(' \t\n\r'), bookDepositoryPrice.strip(' \t\n\r'), reviews, ratings.strip(' \t\n\r'), stars.strip(' \t\n\r'), summary, amazonLink.strip(' \t\n\r'), bookDepositoryLink.strip(' \t\n\r')]
         index += 1
 
         books.add_row(b)
 
-    # print books
+    print books
 
 
 # Gets the required book details along with prices from Amazon
@@ -144,7 +144,7 @@ def getFromAmazon(amazonUrl):
 
         amazonBooks.append(bookDetails)
 
-        print bookDetails
+        # print bookDetails
 
     # print amazonBooks
 
@@ -262,11 +262,12 @@ def getPrices(book):
 
     return amazonBooks
 
+if __name__ == "__main__":
+    # Gets the required keyword from the user on the basis of which the book has to be searched
+    keyword = raw_input("Enter book to be searched :")
+    print keyword
+    # Invokes getPrices to display prices of books matching the keyword
 
-# Gets the required keyword from the user on the basis of which the book has to be searched
-keyword = raw_input("Enter book to be searched :")
-print keyword
-# Invokes getPrices to display prices of books matching the keyword
-
-books = getPrices(keyword)
-print books
+    books = getPrices(keyword)
+    # print books
+    printTable(books)
