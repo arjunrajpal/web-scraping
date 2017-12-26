@@ -5,7 +5,7 @@ import csv
 import resume_manager
 
 
-def login():
+def login(rollno, password):
 
     absoluteUrl = "http://tnp.dtu.ac.in/rm_2016-17/intern/intern_login"
 
@@ -14,8 +14,8 @@ def login():
     br.addheaders = [('User-agent', 'Firefox')]
     br.open(absoluteUrl)
     br.select_form(nr=0)
-    br.form['intern_student_username_rollnumber'] = "2k14/se/021"
-    br.form['intern_student_password'] = "Tintinrajpal@11"
+    br.form['intern_student_username_rollnumber'] = rollno
+    br.form['intern_student_password'] = password
 
     response = br.submit()
 
@@ -71,7 +71,10 @@ if __name__ == "__main__":
         companies = csv.reader(companyFile)
         companies = list(companies)
 
-    br = login()
+    rollno = raw_input("Enter roll no:")
+    password = raw_input("Enter password:")
+
+    br = login(rollno, password)
 
     companyProfiles = []
 
@@ -80,7 +83,7 @@ if __name__ == "__main__":
     counter = 0
     for company in companies:
 
-        counter += 1
+        counter = counter+1
 
         print company[0] # company name
 

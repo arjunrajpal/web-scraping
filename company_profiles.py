@@ -6,7 +6,7 @@ import resume_manager
 import urllib2
 
 
-def login():
+def login(rollno, password):
 
     absoluteUrl = "http://tnp.dtu.ac.in/rm_2016-17/login/"
 
@@ -15,8 +15,8 @@ def login():
     br.addheaders = [('User-agent', 'Firefox')]
     br.open(absoluteUrl)
     br.select_form(nr=0)
-    br.form['student_username_rollnumber'] = "2k13/el/079"
-    br.form['student_password'] = "dynamicchampz"
+    br.form['student_username_rollnumber'] = rollno
+    br.form['student_password'] = password
 
     response = br.submit()
 
@@ -80,11 +80,14 @@ if __name__ == "__main__":
 
     flag = 0
 
-    with open('../../../Desktop/companies_placement.csv','r') as companyFile:
+    with open('../../companies_placement.csv','r') as companyFile:
         companies = csv.reader(companyFile)
         companies = list(companies)
 
-    br = login()
+    rollno = raw_input("Enter roll no:")
+    password = raw_input("Enter password:")
+
+    br = login(rollno, password)
 
     companyProfiles = []
 
@@ -93,7 +96,7 @@ if __name__ == "__main__":
     counter = 0
     for company in companies:
 
-        counter += 1
+        counter = counter+1
 
         print company[0] # company name
 
@@ -110,7 +113,6 @@ if __name__ == "__main__":
         content = getCompanyData(br, company)
 
         companyProfiles.append(content)
-
 
     # print companyProfiles
 

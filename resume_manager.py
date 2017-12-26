@@ -153,7 +153,7 @@ def getData(rollno, password):
         spamwriter.writerow(['Company Name', 'Branches', 'Application Deadline', 'B.Tech', 'M.Tech', 'MBA', 'DateofVisit', 'Link'])
 
         for company in companyDetails:
-            spamwriter.writerow([company['Company Name'], company['Branches'], company['Application Deadline'], company['B.Tech'], company['M.Tech'], company['MBA'], company['DateofVisit'], company['LinkForCompany']])
+            spamwriter.writerow([company['Company Name'].encode("utf-8"), company['Branches'].encode("utf-8"), company['Application Deadline'].encode("utf-8"), company['B.Tech'].encode("utf-8"), company['M.Tech'].encode("utf-8"), company['MBA'].encode("utf-8"), company['DateofVisit'].encode("utf-8"), company['LinkForCompany'].encode("utf-8")])
 
     return companyDetails
 
